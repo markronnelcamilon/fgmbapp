@@ -259,7 +259,7 @@ class _DayChallenge21WidgetState extends State<DayChallenge21Widget> {
                                         Icon(
                                           Icons.check,
                                           color: Color(0xFF146B3A),
-                                          size: 24,
+                                          size: 20,
                                         ),
                                     ],
                                   ),
