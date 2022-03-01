@@ -17,6 +17,7 @@ import 'book_list/book_list_widget.dart';
 import 'calculator/calculator_widget.dart';
 import 'user_account/user_account_widget.dart';
 import 'course_main_page/course_main_page_widget.dart';
+import 'video_series/video_series_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -126,6 +127,7 @@ class _NavBarPageState extends State<NavBarPage> {
       'Calculator': CalculatorWidget(),
       'UserAccount': UserAccountWidget(),
       'CourseMainPage': CourseMainPageWidget(),
+      'VideoSeries': VideoSeriesWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPage);
     return Scaffold(
@@ -190,6 +192,14 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 24,
             ),
             label: 'Course',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home_outlined,
+              size: 24,
+            ),
+            label: 'Home',
             tooltip: '',
           )
         ],

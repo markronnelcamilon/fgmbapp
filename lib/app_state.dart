@@ -17,7 +17,7 @@ class FFAppState {
     _task1 = prefs.getBool('ff_task1') ?? _task1;
     _tasks =
         prefs.getStringList('ff_tasks')?.map((x) => x == 'true')?.toList() ??
-            [];
+            _tasks;
   }
 
   SharedPreferences prefs;
