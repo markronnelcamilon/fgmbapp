@@ -36,72 +36,79 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         decoration: BoxDecoration(
           color: Color(0xFFEEEEEE),
         ),
-        child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        'BRAG',
-                        style: FlutterFlowTheme.of(context).bodyText1,
-                      ),
-                      FlutterFlowIconButton(
-                        borderColor: Colors.transparent,
-                        borderRadius: 0,
-                        borderWidth: 1,
-                        buttonSize: 50,
-                        icon: FaIcon(
-                          FontAwesomeIcons.shareAltSquare,
-                          color: Color(0xFFCFB53B),
-                          size: 30,
-                        ),
-                        onPressed: () async {
-                          await Share.share('');
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-                Row(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
+                child: Row(
                   mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
-                      child: AuthUserStreamWidget(
-                        child: Container(
-                          width: 120,
-                          height: 120,
-                          clipBehavior: Clip.antiAlias,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                          ),
-                          child: Image.network(
-                            currentUserPhoto,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
+                    Text(
+                      'BRAG',
+                      style: FlutterFlowTheme.of(context).bodyText1,
                     ),
-                    Image.asset(
-                      'assets/images/fgmblogo.png',
-                      width: 150,
-                      height: 100,
-                      fit: BoxFit.cover,
+                    FlutterFlowIconButton(
+                      borderColor: Colors.transparent,
+                      borderRadius: 0,
+                      borderWidth: 1,
+                      buttonSize: 50,
+                      icon: FaIcon(
+                        FontAwesomeIcons.shareAltSquare,
+                        color: Color(0xFFCFB53B),
+                        size: 30,
+                      ),
+                      onPressed: () async {
+                        await Share.share('');
+                      },
                     ),
                   ],
                 ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+                    child: AuthUserStreamWidget(
+                      child: Container(
+                        width: 120,
+                        height: 120,
+                        clipBehavior: Clip.antiAlias,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                        ),
+                        child: Image.network(
+                          currentUserPhoto,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Image.asset(
+                    'assets/images/fgmblogo.png',
+                    width: 150,
+                    height: 100,
+                    fit: BoxFit.cover,
+                  ),
+                ],
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 16),
+                child: InkWell(
+                  onTap: () async {
+                    await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DayChallenge21Widget(),
+                      ),
+                    );
+                  },
                   child: Card(
                     clipBehavior: Clip.antiAliasWithSaveLayer,
                     color: FlutterFlowTheme.of(context).tertiaryColor,
@@ -309,242 +316,217 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                  child: Card(
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    color: FlutterFlowTheme.of(context).tertiaryColor,
-                    elevation: 5,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: Padding(
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 16),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(5, 5, 5, 5),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(5, 5, 5, 5),
-                            child: Text(
-                              'Subscription',
-                              textAlign: TextAlign.start,
-                              style: FlutterFlowTheme.of(context)
-                                  .subtitle2
-                                  .override(
-                                    fontFamily: 'Poppins',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryColor,
-                                  ),
+                      child: Text(
+                        'Subscription',
+                        textAlign: TextAlign.start,
+                        style: FlutterFlowTheme.of(context).subtitle2.override(
+                              fontFamily: 'Poppins',
+                              color: FlutterFlowTheme.of(context).primaryColor,
                             ),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
-                            child: SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    width: MediaQuery.of(context).size.width,
-                                    height: 100,
-                                    constraints: BoxConstraints(
-                                      maxWidth:
-                                          MediaQuery.of(context).size.width,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .tertiaryColor,
-                                    ),
-                                    child:
-                                        StreamBuilder<List<SubscriptionRecord>>(
-                                      stream: querySubscriptionRecord(
-                                        queryBuilder: (subscriptionRecord) =>
-                                            subscriptionRecord.where('uid',
-                                                isEqualTo: currentUserUid),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: 100,
+                              constraints: BoxConstraints(
+                                maxWidth: MediaQuery.of(context).size.width,
+                              ),
+                              decoration: BoxDecoration(),
+                              child: StreamBuilder<List<SubscriptionRecord>>(
+                                stream: querySubscriptionRecord(
+                                  queryBuilder: (subscriptionRecord) =>
+                                      subscriptionRecord.where('uid',
+                                          isEqualTo: currentUserUid),
+                                ),
+                                builder: (context, snapshot) {
+                                  // Customize what your widget looks like when it's loading.
+                                  if (!snapshot.hasData) {
+                                    return Center(
+                                      child: SizedBox(
+                                        width: 50,
+                                        height: 50,
+                                        child: SpinKitDoubleBounce(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryColor,
+                                          size: 50,
+                                        ),
                                       ),
-                                      builder: (context, snapshot) {
-                                        // Customize what your widget looks like when it's loading.
-                                        if (!snapshot.hasData) {
-                                          return Center(
-                                            child: SizedBox(
-                                              width: 50,
-                                              height: 50,
-                                              child: SpinKitDoubleBounce(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryColor,
-                                                size: 50,
-                                              ),
-                                            ),
-                                          );
-                                        }
-                                        List<SubscriptionRecord>
-                                            listViewSubscriptionRecordList =
-                                            snapshot.data;
-                                        return ListView.builder(
-                                          padding: EdgeInsets.zero,
-                                          shrinkWrap: true,
-                                          scrollDirection: Axis.horizontal,
-                                          itemCount:
-                                              listViewSubscriptionRecordList
-                                                  .length,
-                                          itemBuilder:
-                                              (context, listViewIndex) {
-                                            final listViewSubscriptionRecord =
-                                                listViewSubscriptionRecordList[
-                                                    listViewIndex];
-                                            return Container(
-                                              width: 100,
-                                              height: 100,
-                                              decoration: BoxDecoration(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .tertiaryColor,
-                                              ),
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(2, 2, 2, 2),
-                                                child: InkWell(
-                                                  onTap: () async {
-                                                    if ((listViewSubscriptionRecord
-                                                            .subscriptionName) ==
-                                                        '21 Day Challenge') {
-                                                      await Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              DayChallenge21Widget(),
-                                                        ),
-                                                      );
-                                                    }
-                                                    if ((listViewSubscriptionRecord
-                                                            .subscriptionName) ==
-                                                        'Daily Goal Book') {
-                                                      await Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              GoalBookWidget(),
-                                                        ),
-                                                      );
-                                                    }
-                                                    if ((listViewSubscriptionRecord
-                                                            .subscriptionName) ==
-                                                        'Daily Success Planner') {
-                                                      await Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              DailySuccessPlannerListWidget(),
-                                                        ),
-                                                      );
-                                                    }
-                                                    if ((listViewSubscriptionRecord
-                                                            .subscriptionName) ==
-                                                        '90 Day Challenge') {
-                                                      await Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              DayChallenge90Widget(),
-                                                        ),
-                                                      );
-                                                    }
-                                                  },
-                                                  child: Card(
-                                                    clipBehavior: Clip
-                                                        .antiAliasWithSaveLayer,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryColor,
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(5,
-                                                                      5, 5, 5),
-                                                          child: Text(
-                                                            listViewSubscriptionRecord
-                                                                .subscriptionName,
-                                                            textAlign: TextAlign
-                                                                .center,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Poppins',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .tertiaryColor,
-                                                                  fontSize: 12,
-                                                                ),
-                                                          ),
-                                                        ),
-                                                      ],
+                                    );
+                                  }
+                                  List<SubscriptionRecord>
+                                      listViewSubscriptionRecordList =
+                                      snapshot.data;
+                                  return ListView.builder(
+                                    padding: EdgeInsets.zero,
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount:
+                                        listViewSubscriptionRecordList.length,
+                                    itemBuilder: (context, listViewIndex) {
+                                      final listViewSubscriptionRecord =
+                                          listViewSubscriptionRecordList[
+                                              listViewIndex];
+                                      return Container(
+                                        width: 100,
+                                        height: 100,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .tertiaryColor,
+                                        ),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  2, 2, 2, 2),
+                                          child: InkWell(
+                                            onTap: () async {
+                                              if ((listViewSubscriptionRecord
+                                                      .subscriptionName) ==
+                                                  '21 Day Challenge') {
+                                                await Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        DayChallenge21Widget(),
+                                                  ),
+                                                );
+                                              }
+                                              if ((listViewSubscriptionRecord
+                                                      .subscriptionName) ==
+                                                  'Daily Goal Book') {
+                                                await Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        GoalBookWidget(),
+                                                  ),
+                                                );
+                                              }
+                                              if ((listViewSubscriptionRecord
+                                                      .subscriptionName) ==
+                                                  'Daily Success Planner') {
+                                                await Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        DailySuccessPlannerListWidget(),
+                                                  ),
+                                                );
+                                              }
+                                              if ((listViewSubscriptionRecord
+                                                      .subscriptionName) ==
+                                                  '90 Day Challenge') {
+                                                await Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        DayChallenge90Widget(),
+                                                  ),
+                                                );
+                                              }
+                                            },
+                                            child: Card(
+                                              clipBehavior:
+                                                  Clip.antiAliasWithSaveLayer,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryColor,
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                5, 5, 5, 5),
+                                                    child: Text(
+                                                      listViewSubscriptionRecord
+                                                          .subscriptionName,
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Poppins',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .tertiaryColor,
+                                                                fontSize: 12,
+                                                              ),
                                                     ),
                                                   ),
-                                                ),
+                                                ],
                                               ),
-                                            );
-                                          },
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                ],
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
-                  child: Text(
-                    'fgmhub.com',
-                    textAlign: TextAlign.center,
-                    style: FlutterFlowTheme.of(context).bodyText1,
-                  ),
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+                child: Text(
+                  'fgmhub.com',
+                  textAlign: TextAlign.center,
+                  style: FlutterFlowTheme.of(context).bodyText1,
                 ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(8, 10, 8, 50),
-                  child: FFButtonWidget(
-                    onPressed: () {
-                      print('Button pressed ...');
-                    },
-                    text: 'Share 21 Day Challenge with a friend',
-                    options: FFButtonOptions(
-                      width: double.infinity,
-                      height: 40,
-                      color: FlutterFlowTheme.of(context).primaryColor,
-                      textStyle:
-                          FlutterFlowTheme.of(context).subtitle2.override(
-                                fontFamily: 'Poppins',
-                                color: Colors.white,
-                              ),
-                      borderSide: BorderSide(
-                        color: Colors.transparent,
-                        width: 1,
-                      ),
-                      borderRadius: 12,
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(8, 10, 8, 50),
+                child: FFButtonWidget(
+                  onPressed: () {
+                    print('Button pressed ...');
+                  },
+                  text: 'Share 21 Day Challenge with a friend',
+                  options: FFButtonOptions(
+                    width: double.infinity,
+                    height: 40,
+                    color: FlutterFlowTheme.of(context).primaryColor,
+                    textStyle: FlutterFlowTheme.of(context).subtitle2.override(
+                          fontFamily: 'Poppins',
+                          color: Colors.white,
+                        ),
+                    borderSide: BorderSide(
+                      color: Colors.transparent,
+                      width: 1,
                     ),
+                    borderRadius: 12,
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

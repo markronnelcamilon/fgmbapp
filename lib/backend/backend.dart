@@ -24,6 +24,7 @@ import 'schema/targets_record.dart';
 import 'schema/task90_record.dart';
 import 'schema/ninety_days_counter_record.dart';
 import 'schema/video_courses_record.dart';
+import 'schema/subscription_list_record.dart';
 import 'schema/serializers.dart';
 
 export 'package:cloud_firestore/cloud_firestore.dart';
@@ -50,6 +51,7 @@ export 'schema/targets_record.dart';
 export 'schema/task90_record.dart';
 export 'schema/ninety_days_counter_record.dart';
 export 'schema/video_courses_record.dart';
+export 'schema/subscription_list_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Stream<List<UsersRecord>> queryUsersRecord(
@@ -382,6 +384,23 @@ Future<List<VideoCoursesRecord>> queryVideoCoursesRecordOnce(
         bool singleRecord = false}) =>
     queryCollectionOnce(
         VideoCoursesRecord.collection, VideoCoursesRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+/// Functions to query SubscriptionListRecords (as a Stream and as a Future).
+Stream<List<SubscriptionListRecord>> querySubscriptionListRecord(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollection(
+        SubscriptionListRecord.collection, SubscriptionListRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+Future<List<SubscriptionListRecord>> querySubscriptionListRecordOnce(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollectionOnce(
+        SubscriptionListRecord.collection, SubscriptionListRecord.serializer,
         queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
 
 Stream<List<T>> queryCollection<T>(

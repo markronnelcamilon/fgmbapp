@@ -99,6 +99,7 @@ class _FinancialPlannerWidgetState extends State<FinancialPlannerWidget> {
                       .doc()
                       .set(subscriptionCreateData);
                   await actions.quarterlyGoals();
+
                   final usersUpdateData = {
                     'subscription_list':
                         FieldValue.arrayUnion(['21 Day Challenge']),

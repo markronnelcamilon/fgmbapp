@@ -28,13 +28,13 @@ class _ProgressIndicatorState extends State<ProgressIndicator> {
     return CircularStepProgressIndicator(
       totalSteps: 21,
       currentStep: widget.noOfDays,
-      stepSize: 10,
-      selectedColor: Colors.yellow,
+      stepSize: 8,
+      selectedColor: Color(0xFFcdb43c),
       unselectedColor: Colors.grey[200],
       padding: 0,
       width: 80,
       height: 80,
-      selectedStepSize: 15,
+      selectedStepSize: 10,
       roundedCap: (_, __) => true,
     );
   }

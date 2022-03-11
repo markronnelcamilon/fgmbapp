@@ -365,45 +365,42 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                     children: [
                       FFButtonWidget(
                         onPressed: () async {
-                          await showDialog(
-                            context: context,
-                            builder: (alertDialogContext) {
-                              return AlertDialog(
-                                title: Text('Create Account'),
-                                content: Text(
-                                    'Are you sure you want to create an account?'),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.pop(alertDialogContext),
-                                    child: Text('Cancel'),
-                                  ),
-                                  TextButton(
-                                    onPressed: () async {
-                                      Navigator.pop(alertDialogContext);
-
-                                      final usersUpdateData =
-                                          createUsersRecordData(
-                                        firstName: firstNameController.text,
-                                        lastName: lastNameController.text,
-                                        photoUrl: uploadedFileUrl,
-                                        phoneNumber:
-                                            contactNumberController.text,
-                                        createdTime: getCurrentTimestamp,
-                                        uid: currentUserUid,
-                                        displayName: userNameController.text,
-                                        image: uploadedFileUrl,
-                                      );
-                                      await currentUserReference
-                                          .update(usersUpdateData);
-                                      ;
-                                    },
-                                    child: Text('Confirm'),
-                                  ),
-                                ],
-                              );
-                            },
-                          );
+                          var confirmDialogResponse = await showDialog<bool>(
+                                context: context,
+                                builder: (alertDialogContext) {
+                                  return AlertDialog(
+                                    title: Text('Create Account'),
+                                    content: Text(
+                                        'Are you sure you want to create an account?'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () => Navigator.pop(
+                                            alertDialogContext, false),
+                                        child: Text('Cancel'),
+                                      ),
+                                      TextButton(
+                                        onPressed: () => Navigator.pop(
+                                            alertDialogContext, true),
+                                        child: Text('Confirm'),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              ) ??
+                              false;
+                          if (confirmDialogResponse) {
+                            final usersUpdateData = createUsersRecordData(
+                              firstName: firstNameController.text,
+                              lastName: lastNameController.text,
+                              photoUrl: uploadedFileUrl,
+                              phoneNumber: contactNumberController.text,
+                              createdTime: getCurrentTimestamp,
+                              uid: currentUserUid,
+                              displayName: userNameController.text,
+                              image: uploadedFileUrl,
+                            );
+                            await currentUserReference.update(usersUpdateData);
+                          }
                           await Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(

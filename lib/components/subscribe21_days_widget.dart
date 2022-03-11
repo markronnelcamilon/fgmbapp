@@ -12,7 +12,12 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Subscribe21DaysWidget extends StatefulWidget {
-  const Subscribe21DaysWidget({Key key}) : super(key: key);
+  const Subscribe21DaysWidget({
+    Key key,
+    this.addUserIDToList,
+  }) : super(key: key);
+
+  final String addUserIDToList;
 
   @override
   _Subscribe21DaysWidgetState createState() => _Subscribe21DaysWidgetState();
@@ -51,8 +56,8 @@ class _Subscribe21DaysWidgetState extends State<Subscribe21DaysWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               FFButtonWidget(
-                onPressed: () {
-                  print('Button pressed ...');
+                onPressed: () async {
+                  Navigator.pop(context);
                 },
                 text: 'Cancel',
                 options: FFButtonOptions(

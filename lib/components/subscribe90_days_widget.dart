@@ -39,9 +39,9 @@ class _Subscribe90DaysWidgetState extends State<Subscribe90DaysWidget> {
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 20),
+            padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
             child: Text(
-              'Subscribe to 90 Days Challenge and Win your day.',
+              'Subscribe to 90 Days Challenge and Win Your Day.',
               textAlign: TextAlign.center,
               style: FlutterFlowTheme.of(context).title3,
             ),
@@ -51,17 +51,17 @@ class _Subscribe90DaysWidgetState extends State<Subscribe90DaysWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               FFButtonWidget(
-                onPressed: () {
-                  print('Button pressed ...');
+                onPressed: () async {
+                  Navigator.pop(context);
                 },
                 text: 'Cancel',
                 options: FFButtonOptions(
                   width: 130,
                   height: 40,
-                  color: Colors.transparent,
+                  color: Color(0xFFEAEAEA),
                   textStyle: FlutterFlowTheme.of(context).subtitle2.override(
                         fontFamily: 'Poppins',
-                        color: Color(0xFFCFB53B),
+                        color: Colors.black,
                       ),
                   borderSide: BorderSide(
                     color: Colors.transparent,
@@ -72,21 +72,21 @@ class _Subscribe90DaysWidgetState extends State<Subscribe90DaysWidget> {
               ),
               FFButtonWidget(
                 onPressed: () async {
-                  final ninetyDaysCounterCreateData =
-                      createNinetyDaysCounterRecordData(
+                  final twentyOneDaysCounterCreateData =
+                      createTwentyOneDaysCounterRecordData(
                     uid: currentUserUid,
                     noOfDays: 0,
                     subscriptionId: '${currentUserUid}21DayChallenge',
                     startDate: getCurrentTimestamp,
                     endDate: functions.add21DaysToCurrentDay(),
                   );
-                  await NinetyDaysCounterRecord.collection
+                  await TwentyOneDaysCounterRecord.collection
                       .doc()
-                      .set(ninetyDaysCounterCreateData);
+                      .set(twentyOneDaysCounterCreateData);
 
                   final subscriptionCreateData = createSubscriptionRecordData(
                     uid: currentUserUid,
-                    subscriptionName: '90 Day Challenge',
+                    subscriptionName: '21 Day Challenge',
                     subscriptionDate: getCurrentTimestamp,
                     subscriptionCost: 2.99,
                     active: true,
@@ -101,12 +101,11 @@ class _Subscribe90DaysWidgetState extends State<Subscribe90DaysWidget> {
                   };
                   await currentUserReference.update(usersUpdateData);
                   await actions.addninetydays();
-                  await Navigator.pushAndRemoveUntil(
+                  await Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => DayChallenge90Widget(),
                     ),
-                    (r) => false,
                   );
                 },
                 text: 'Subscribe',

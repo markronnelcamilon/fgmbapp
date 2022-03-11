@@ -22,7 +22,7 @@ class IthankgodforBsWidget extends StatefulWidget {
 }
 
 class _IthankgodforBsWidgetState extends State<IthankgodforBsWidget> {
-  TextEditingController textController;
+  TextEditingController iThankGodForTfController;
 
   @override
   Widget build(BuildContext context) {
@@ -84,11 +84,11 @@ class _IthankgodforBsWidgetState extends State<IthankgodforBsWidget> {
                             ),
                             child: TextFormField(
                               onChanged: (_) => EasyDebounce.debounce(
-                                'textController',
+                                'iThankGodForTfController',
                                 Duration(milliseconds: 2000),
                                 () => setState(() {}),
                               ),
-                              controller: textController ??=
+                              controller: iThankGodForTfController ??=
                                   TextEditingController(
                                 text: columnDailySuccessPlannerRecord
                                     .iThankGodFor,
@@ -115,10 +115,12 @@ class _IthankgodforBsWidgetState extends State<IthankgodforBsWidget> {
                                     topRight: Radius.circular(4.0),
                                   ),
                                 ),
-                                suffixIcon: textController.text.isNotEmpty
+                                suffixIcon: iThankGodForTfController
+                                        .text.isNotEmpty
                                     ? InkWell(
                                         onTap: () => setState(
-                                          () => textController.clear(),
+                                          () =>
+                                              iThankGodForTfController.clear(),
                                         ),
                                         child: Icon(
                                           Icons.clear,
@@ -173,7 +175,8 @@ class _IthankgodforBsWidgetState extends State<IthankgodforBsWidget> {
                                   onPressed: () async {
                                     final dailySuccessPlannerUpdateData =
                                         createDailySuccessPlannerRecordData(
-                                      iThankGodFor: textController?.text ?? '',
+                                      iThankGodFor:
+                                          iThankGodForTfController?.text ?? '',
                                     );
                                     await columnDailySuccessPlannerRecord
                                         .reference

@@ -287,52 +287,51 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                     children: [
                       FFButtonWidget(
                         onPressed: () async {
-                          await showDialog(
-                            context: context,
-                            builder: (alertDialogContext) {
-                              return AlertDialog(
-                                title: Text('Create An Account'),
-                                content: Text(
-                                    'Are you sure you want to create an account?'),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.pop(alertDialogContext),
-                                    child: Text('Cancel'),
+                          var confirmDialogResponse = await showDialog<bool>(
+                                context: context,
+                                builder: (alertDialogContext) {
+                                  return AlertDialog(
+                                    title: Text('Create An Account'),
+                                    content: Text(
+                                        'Are you sure you want to create an account?'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () => Navigator.pop(
+                                            alertDialogContext, false),
+                                        child: Text('Cancel'),
+                                      ),
+                                      TextButton(
+                                        onPressed: () => Navigator.pop(
+                                            alertDialogContext, true),
+                                        child: Text('Confirm'),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              ) ??
+                              false;
+                          if (confirmDialogResponse) {
+                            if (passwordController.text !=
+                                confirmPasswordController.text) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Passwords don\'t match!',
                                   ),
-                                  TextButton(
-                                    onPressed: () async {
-                                      Navigator.pop(alertDialogContext);
-                                      if (passwordController.text !=
-                                          confirmPasswordController.text) {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                              'Passwords don\'t match!',
-                                            ),
-                                          ),
-                                        );
-                                        return;
-                                      }
-
-                                      final user = await createAccountWithEmail(
-                                        context,
-                                        emailAddressController.text,
-                                        passwordController.text,
-                                      );
-                                      if (user == null) {
-                                        return;
-                                      }
-
-                                      ;
-                                    },
-                                    child: Text('Confirm'),
-                                  ),
-                                ],
+                                ),
                               );
-                            },
-                          );
+                              return;
+                            }
+
+                            final user = await createAccountWithEmail(
+                              context,
+                              emailAddressController.text,
+                              passwordController.text,
+                            );
+                            if (user == null) {
+                              return;
+                            }
+                          }
                           await Navigator.push(
                             context,
                             MaterialPageRoute(
