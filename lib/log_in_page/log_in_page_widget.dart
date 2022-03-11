@@ -1,8 +1,8 @@
 import '../auth/auth_util.dart';
-import '../complete_profile/complete_profile_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../forgot_password/forgot_password_widget.dart';
 import '../main.dart';
 import '../register/register_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -241,8 +241,13 @@ class _LogInPageWidgetState extends State<LogInPageWidget> {
                         ),
                       ),
                       FFButtonWidget(
-                        onPressed: () {
-                          print('Button-ForgotPassword pressed ...');
+                        onPressed: () async {
+                          await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ForgotPasswordWidget(),
+                            ),
+                          );
                         },
                         text: 'Forgot Password?',
                         options: FFButtonOptions(
@@ -302,7 +307,8 @@ class _LogInPageWidgetState extends State<LogInPageWidget> {
                           await Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => CompleteProfileWidget(),
+                              builder: (context) =>
+                                  NavBarPage(initialPage: 'HomePage'),
                             ),
                           );
                         },
@@ -337,7 +343,8 @@ class _LogInPageWidgetState extends State<LogInPageWidget> {
                           await Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => CompleteProfileWidget(),
+                              builder: (context) =>
+                                  NavBarPage(initialPage: 'HomePage'),
                             ),
                           );
                         },

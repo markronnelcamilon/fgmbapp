@@ -204,6 +204,7 @@ class _ChallengeComponent90WidgetState
                         FFButtonWidget(
                           onPressed: () async {
                             Navigator.pop(context);
+
                             final ninetyDaysChallengeUpdateData =
                                 createNinetyDaysChallengeRecordData(
                               completed: true,

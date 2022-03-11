@@ -73,6 +73,7 @@ class _DailySuccessPlannerWidgetState extends State<DailySuccessPlannerWidget> {
               FFButtonWidget(
                 onPressed: () async {
                   await actions.dailySuccessPlanner();
+
                   final subscriptionCreateData = createSubscriptionRecordData(
                     uid: currentUserUid,
                     subscriptionName: 'Daily Success Planner',
@@ -84,6 +85,7 @@ class _DailySuccessPlannerWidgetState extends State<DailySuccessPlannerWidget> {
                       .doc()
                       .set(subscriptionCreateData);
                   await actions.quarterlyGoals();
+
                   final usersUpdateData = {
                     'subscription_list':
                         FieldValue.arrayUnion(['Daily Success Planner']),

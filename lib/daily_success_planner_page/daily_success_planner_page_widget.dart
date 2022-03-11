@@ -414,6 +414,7 @@ class _DailySuccessPlannerPageWidgetState
                                         .bodyText1
                                         .override(
                                           fontFamily: 'Poppins',
+                                          color: Color(0xFFEAEAEA),
                                           fontSize: 12,
                                         ),
                                   ),
@@ -788,6 +789,7 @@ class _DailySuccessPlannerPageWidgetState
                                         .bodyText1
                                         .override(
                                           fontFamily: 'Poppins',
+                                          color: Color(0xFFEAEAEA),
                                           fontSize: 12,
                                         ),
                                   ),

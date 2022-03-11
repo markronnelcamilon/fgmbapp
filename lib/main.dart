@@ -14,10 +14,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'home_page/home_page_widget.dart';
 import 'subscirption_page/subscirption_page_widget.dart';
 import 'book_list/book_list_widget.dart';
-import 'calculator/calculator_widget.dart';
 import 'user_account/user_account_widget.dart';
-import 'course_main_page/course_main_page_widget.dart';
-import 'video_series/video_series_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -124,10 +121,7 @@ class _NavBarPageState extends State<NavBarPage> {
       'HomePage': HomePageWidget(),
       'SubscirptionPage': SubscirptionPageWidget(),
       'BookList': BookListWidget(),
-      'Calculator': CalculatorWidget(),
       'UserAccount': UserAccountWidget(),
-      'CourseMainPage': CourseMainPageWidget(),
-      'VideoSeries': VideoSeriesWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPage);
     return Scaffold(
@@ -168,35 +162,11 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.calculate,
-              size: 24,
-            ),
-            label: 'Home',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
               Icons.person_outlined,
               size: 24,
             ),
             activeIcon: Icon(
               Icons.person,
-              size: 24,
-            ),
-            label: 'Home',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.ondemand_video,
-              size: 24,
-            ),
-            label: 'Course',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home_outlined,
               size: 24,
             ),
             label: 'Home',

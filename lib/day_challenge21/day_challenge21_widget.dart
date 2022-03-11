@@ -151,8 +151,26 @@ class _DayChallenge21WidgetState extends State<DayChallenge21Widget> {
                                     gridViewIndex];
                             return InkWell(
                               onTap: () async {
-                                if (!(gridViewTwentyOneDaysChallengeRecord
-                                    .completed)) {
+                                if (gridViewTwentyOneDaysChallengeRecord
+                                    .completed) {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        title: Text('Task already completed'),
+                                        content: Text(
+                                            'The task is already completed you can proceed to next task'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: Text('Ok'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                } else {
                                   await showModalBottomSheet(
                                     isScrollControlled: true,
                                     context: context,
@@ -186,26 +204,6 @@ class _DayChallenge21WidgetState extends State<DayChallenge21Widget> {
                                                     .reference,
                                           ),
                                         ),
-                                      );
-                                    },
-                                  );
-                                }
-                                if (gridViewTwentyOneDaysChallengeRecord
-                                    .completed) {
-                                  await showDialog(
-                                    context: context,
-                                    builder: (alertDialogContext) {
-                                      return AlertDialog(
-                                        title: Text('Task already completed'),
-                                        content: Text(
-                                            'The task is already completed you can proceed to next task'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: Text('Ok'),
-                                          ),
-                                        ],
                                       );
                                     },
                                   );

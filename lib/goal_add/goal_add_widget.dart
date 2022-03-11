@@ -130,39 +130,38 @@ class _GoalAddWidgetState extends State<GoalAddWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    await showDialog(
-                      context: context,
-                      builder: (alertDialogContext) {
-                        return AlertDialog(
-                          title: Text('Win the day'),
-                          content: Text('Add this to your goal.'),
-                          actions: [
-                            TextButton(
-                              onPressed: () =>
-                                  Navigator.pop(alertDialogContext),
-                              child: Text('Cancel'),
-                            ),
-                            TextButton(
-                              onPressed: () async {
-                                Navigator.pop(alertDialogContext);
-
-                                final goalBookCreateData =
-                                    createGoalBookRecordData(
-                                  user: currentUserUid,
-                                  date: getCurrentTimestamp,
-                                  goal: goalTextFieldController.text,
-                                );
-                                await GoalBookRecord.collection
-                                    .doc()
-                                    .set(goalBookCreateData);
-                                ;
-                              },
-                              child: Text('Confirm'),
-                            ),
-                          ],
-                        );
-                      },
-                    );
+                    var confirmDialogResponse = await showDialog<bool>(
+                          context: context,
+                          builder: (alertDialogContext) {
+                            return AlertDialog(
+                              title: Text('Win the day'),
+                              content: Text('Add this to your goal.'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(alertDialogContext, false),
+                                  child: Text('Cancel'),
+                                ),
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(alertDialogContext, true),
+                                  child: Text('Confirm'),
+                                ),
+                              ],
+                            );
+                          },
+                        ) ??
+                        false;
+                    if (confirmDialogResponse) {
+                      final goalBookCreateData = createGoalBookRecordData(
+                        user: currentUserUid,
+                        date: getCurrentTimestamp,
+                        goal: goalTextFieldController.text,
+                      );
+                      await GoalBookRecord.collection
+                          .doc()
+                          .set(goalBookCreateData);
+                    }
                     await Navigator.push(
                       context,
                       MaterialPageRoute(
